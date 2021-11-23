@@ -7,7 +7,7 @@ revoke_all | Bool | false | Allow or disallow revocation of the access to all th
 scp_access | Bool | false | Allow or disallow SCPs to open doors that you set with scp_access_doors.
 access_set | Dictionary | 012: 0 / 173: 1&2 / INTERCOM: 5&7 | Gives access to the door with the item(s) that you set.
 scp_access_doors | List | CHECKPOINT_ENT / CHECKPOINT_LCZ_A / CHECKPOINT_LCZ_B | List of the doors that SCPs can open. Only works if door is edited on the access_set config.
-scp079_bypass | Bool | true | Allow or disallow SCP-079 bypass.
+scp079_bypass | Bool | false | Allow or disallow SCP-079 bypass.
 generator_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
 nuke049_lockers_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
 large_gun_locker | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
