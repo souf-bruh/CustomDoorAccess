@@ -157,5 +157,5 @@ Locker Type ID | Description
 --- | ---
 StandardLocker | Lockers located throughout the Light and Entrance Zone
 SmallWallCabinet | Locker with medkits or adrenaline
-ScpPedestal | Locker with SCP object
+ScpPedestal | Locker with SCP subject
 LargeGunLocker | Locker in Nuke or SCP-049 Armory room
