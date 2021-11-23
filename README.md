@@ -1,4 +1,4 @@
-# CustomDoorAccess 1.3.0
+# CustomDoorAccess 1.4.0
 
 Config Setting | Value Type | Default Value | Description
 --- | --- | --- | ---
@@ -9,6 +9,11 @@ access_set | Dictionary | 012: 0 / 173: 1&2 / INTERCOM: 5&7 | Gives access to th
 scp_access_doors | List | CHECKPOINT_ENT / CHECKPOINT_LCZ_A / CHECKPOINT_LCZ_B | List of the doors that SCPs can open. Only works if door is edited on the access_set config.
 scp079_bypass | Bool | true | Allow or disallow SCP-079 bypass.
 generator_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
+nuke049_lockers_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
+large_gun_locker | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
+scp_pedestal_locker | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
+med_kit_locker | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty can be open without anything).
+work_station_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty can be activated without anything).
 elevator_access | Dictionary | Empty | Dictionary of elevators and item(s). (If empty no access will be set).
 
 ```
@@ -20,8 +25,6 @@ access_set:
     SURFACE_NUKE: 10&11
 
 It’s worth noting that revoke_all only revokes access to the default cards to the doors which you added with access_set.
-
-If you need help with the configurations, contact me on Discord @Faety#0060.
 ```
 
 **Some doors need revoke_all to work because they don’t need keycards by default!**
@@ -39,6 +42,12 @@ Change generator access keycards to only guard and O5.
 generator_access:
     - 4
     - 11
+
+Example:
+Change SCP locker access keycards to only scientist.
+
+scp_pedestal_locker:
+    - 1
 
 Example:
 Change Lift A elevator access to Scientist, Maj Scientist, Zone Manager.
@@ -90,53 +99,59 @@ SURFACE_NUKE | DOOR FROM THE NUKE AT THE SURFACE
 
 ### Items List
 
-Items ID | Description
---- | ---
--1 | No item or error
-0 | Janitor Keycard
-1 | Scientist Keycard
-2 | Major Scientist Keycard
-3 | Zone Manager Keycard
-4 | Guard Keycard
-5 | Senior Guard Keycard
-6 | Containment Engineer Keycard
-7 | MTF Lieutenant Keycard
-8 | MTF Commander Keycard
-9 | Facility Manager Keycard
-10 | Chaos Card
-11 | 05 Card
-12 | Radio
-13 | Com15 Pistol
-14 | Medkit
-15 | Flashlight
-16 | MicroHID
-17 | SCP-500
-18 | SCP-207
-19 | Weapon Manager Tablet
-20 | Epsilon-11 Standard Rifle
-21 | P-90 
-22 | Epsilon ammo
-23 | MP7
-24 | Logicer
-25 | Grenade
-26 | Flash Grenade
-27 | Detainer
-28 | MP7/Logicer ammo
-29 | Pistol/P90/USP ammo
-30 | USP
-31 | Bouncy Ball
-32 | SCP-268 
-33 | Adrenaline
-34 | Painkillers
-35 | Coin
+Description                 | Items ID
+--- --- --- --- --- --- --- | ---
+None                        | -1
+KeycardJanitor              | 0
+KeycardScientist            | 1
+KeycardResearchCoordinator  | 2
+KeycardZoneManager          | 3
+KeycardGuard                | 4
+KeycardNTFOfficer           | 5
+KeycardContainmentEngineer  | 6
+KeycardNTFLieutenant        | 7
+KeycardNTFCommander         | 8
+KeycardFacilityManager      | 9
+KeycardChaosInsurgency      | 10
+KeycardO5                   | 11
+Radio                       | 12
+GunCOM15                    | 13
+Medkit                      | 14
+Flashlight                  | 15
+MicroHID                    | 16
+SCP500                      | 17
+SCP207                      | 18
+Ammo12gauge                 | 19
+GunE11SR                    | 20
+GunCrossvec                 | 21
+Ammo556x45                  | 22
+GunFSP9                     | 23
+GunLogicer                  | 24
+GrenadeHE                   | 25
+GrenadeFlash                | 26
+Ammo44cal                   | 27
+Ammo762x39                  | 28
+Ammo9x19                    | 29
+GunCOM18                    | 30
+SCP018                      | 31
+SCP268                      | 32
+Adrenaline                  | 33
+Painkillers                 | 34
+Coin                        | 35
+ArmorLight                  | 36
+ArmorCombat                 | 37
+ArmorHeavy                  | 38
+GunRevolver                 | 39
+GunAK                       | 40
+GunShotgun                  | 41
 
 ### Elevators List
 
 Elevators ID | Description
---- | ---
-GateA | Gate A Elevator
-GateB | Gate B Elevator
-Scp049 | SCP-049 Elevator
-SystemA | Lift A Elevator
-SystemB | Lift B Elevator
-Nuke | Warhead Elevator
+--- --- ---  | --- --- --- ---
+GateA        | Gate A Elevator
+GateB        | Gate B Elevator
+Scp049       | SCP-049 Elevator
+SystemA      | Lift A Elevator
+SystemB      | Lift B Elevator
+Nuke         | Warhead Elevator
