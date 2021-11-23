@@ -9,12 +9,8 @@ access_set | Dictionary | 012: 0 / INTERCOM: 5&7 | Gives access to the door with
 scp_access_doors | List | CHECKPOINT_ENT / CHECKPOINT_LCZ_A / CHECKPOINT_LCZ_B | List of the doors that SCPs can open. Only works if door is edited on the access_set config.
 scp079_bypass | Bool | false | Allow or disallow SCP-079 bypass.
 generator_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
-nuke049_lockers_access | List | Empty | List of item(s) that are allowed to open lockers in Nuke or SCP-049 Armory room. (If empty the default keycards will be used).
-large_gun_locker | List | Empty | List of item(s) that are allowed to open the locker with E-11-SR. (If empty the default keycards will be used).
-scp_pedestal_locker | List | Empty | List of item(s) that are allowed to open the Scp Pedestal Locker. (If empty the default keycards will be used).
-med_kit_locker | List | Empty | List of item(s) that are allowed to open the locker with Med Kit. (If empty can be open without anything).
-work_station_access | List | Empty | List of item(s) that are allowed to activate the workstation. (If empty can be activated without anything).
 elevator_access | Dictionary | Empty | Dictionary of elevators and item(s). (If empty no access will be set).
+lockers_access | Dictionary | Empty | Dictionary of locker type and item(s). (If empty the default keycards will be used or no access will be set).
 
 ```
 Example:
@@ -40,14 +36,13 @@ Example:
 Change generator access keycards to only guard and O5.
 
 generator_access:
-    - 4
-    - 11
+- 4&11
 
 Example:
 Change SCP locker access keycards to only scientist.
 
-scp_pedestal_locker:
-    - 1
+lockers_access:
+  ScpPedestal: 1
 
 Example:
 Change Lift A elevator access to Scientist, Maj Scientist, Zone Manager.
@@ -155,3 +150,12 @@ Scp049 | SCP-049 Elevator
 SystemA | Lift A Elevator
 SystemB | Lift B Elevator
 Nuke | Warhead Elevator
+
+### Locker Types List
+
+Locker Type ID | Description
+--- | ---
+StandardLocker | Lockers located throughout the Light and Entrance Zone
+SmallWallCabinet | Locker with medkits or adrenaline
+ScpPedestal | Locker with SCP object
+LargeGunLocker | Locker in Nuke or SCP-049 Armory room
