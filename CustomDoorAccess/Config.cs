@@ -30,17 +30,8 @@ namespace CustomDoorAccess
         [Description("List of item(s) that are allowed to use the elevators. (If empty no access will be set)")]
         public Dictionary<string, string> ElevatorAccess { get; set; } = new Dictionary<string, string>();
 
-        [Description("List of item(s) that are allowed to open the Lockers in Nuke or SCP-049 Armory room. (If empty the default keycards will be used)")]
-        public List<int> Nuke049LockersAccess { get; set; } = new List<int>();
-
-        [Description("List of item(s) that are allowed to open the Locker with E-11-SR. (If empty the default keycards will be used)")]
-        public List<int> LargeGunLocker { get; set; } = new List<int>();
-
-        [Description("List of item(s) that are allowed to open the Scp Pedestal Locker. (If empty the default keycards will be used)")]
-        public List<int> ScpPedestalLocker { get; set; } = new List<int>();
-
-        [Description("List of item(s) that are allowed to open the Locker with Med Kit. (If empty can be open without anything)")]
-        public List<int> MedKitLocker { get; set; } = new List<int>();
+        [Description("List of item(s) that are allowed to open lockers. (If empty the default keycards will be used or no access will be set)")]
+        public Dictionary<string, string> LockersAccess { get; set; } = new Dictionary<string, string>();
 
         [Description("List of item(s) that are allowed to activate the workstation. (If empty can be activated without anything)")]
         public List<int> WorkStationAccess { get; set; } = new List<int>();

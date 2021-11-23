@@ -24,7 +24,7 @@ namespace CustomDoorAccess
             Player.InteractingDoor += _eventHandlers.OnDoorInteract;
             Player.UnlockingGenerator += _eventHandlers.OnGeneratorUnlock;
             Player.InteractingElevator += _eventHandlers.OnElevatorInteraction;
-            Player.InteractingLocker += _eventHandlers.OnLockersInteract;
+            Player.InteractingLocker += _eventHandlers.OnLockerUse;
             Player.ActivatingWorkstation += _eventHandlers.OnWorkstationUse;
         }
         public override void OnDisabled()
@@ -32,7 +32,7 @@ namespace CustomDoorAccess
             Player.InteractingDoor -= _eventHandlers.OnDoorInteract;
             Player.UnlockingGenerator -= _eventHandlers.OnGeneratorUnlock;
             Player.InteractingElevator -= _eventHandlers.OnElevatorInteraction;
-            Player.InteractingLocker -= _eventHandlers.OnLockersInteract;
+            Player.InteractingLocker -= _eventHandlers.OnLockerUse;
             Player.ActivatingWorkstation -= _eventHandlers.OnWorkstationUse;
             _eventHandlers = null;
         }

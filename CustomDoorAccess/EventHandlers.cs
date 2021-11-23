@@ -13,7 +13,6 @@ namespace CustomDoorAccess
     {
         private readonly CdaPlugin _plugin;
         public EventHandlers(CdaPlugin plugin) => _plugin = plugin;
-        //internal List<ItemType> KeycardList = new List<ItemType> { ItemType.KeycardJanitor, ItemType.KeycardScientist, ItemType.KeycardZoneManager, ItemType.KeycardResearchCoordinator, ItemType.KeycardGuard, ItemType.KeycardNTFOfficer, ItemType.KeycardNTFLieutenant, ItemType.KeycardNTFCommander, ItemType.KeycardChaosInsurgency, ItemType.KeycardContainmentEngineer, ItemType.KeycardZoneManager, ItemType.KeycardO5 };
         public void OnDoorInteract(InteractingDoorEventArgs ev)
         {
             var ply = ev.Player;
@@ -76,8 +75,8 @@ namespace CustomDoorAccess
             if (!_plugin.Config.GeneratorAccess.Any()) return;
             var currItem = (int) ev.Player.Inventory.CurItem.TypeId;
             var configItemList = _plugin.Config.GeneratorAccess;
-
             ev.IsAllowed = configItemList.Contains(currItem);
+            if (ev.Player.IsBypassModeEnabled) ev.IsAllowed = true;
         }
         public void OnElevatorInteraction(InteractingElevatorEventArgs ev)
         {
@@ -151,48 +150,66 @@ namespace CustomDoorAccess
                 }
             }
         }
-        internal void OnLockersInteract(InteractingLockerEventArgs ev)
-        {
-            if (ev.Locker.StructureType == StructureType.StandardLocker)
-            {
-                if (!_plugin.Config.Nuke049LockersAccess.Any()) return;
-                var currItem = (int)ev.Player.Inventory.CurItem.TypeId;
-                var configItemList = _plugin.Config.Nuke049LockersAccess;
-                ev.IsAllowed = configItemList.Contains(currItem);
-                if (ev.IsAllowed == false) ev.Player.ShowHint($"{_plugin.Translation.StandardLockerCantOpen}");
-            }
-            if (ev.Locker.StructureType == StructureType.LargeGunLocker)
-            {
-                if (!_plugin.Config.LargeGunLocker.Any()) return;
-                var currItem = (int)ev.Player.Inventory.CurItem.TypeId;
-                var configItemList = _plugin.Config.LargeGunLocker;
-                ev.IsAllowed = configItemList.Contains(currItem);
-                if (ev.IsAllowed == false) ev.Player.ShowHint($"{_plugin.Translation.LargeGunLockerCantOpen}");
-            }
-            if (ev.Locker.StructureType == StructureType.ScpPedestal)
-            {
-                if (!_plugin.Config.ScpPedestalLocker.Any()) return;
-                var currItem = (int)ev.Player.Inventory.CurItem.TypeId;
-                var configItemList = _plugin.Config.ScpPedestalLocker;
-                ev.IsAllowed = configItemList.Contains(currItem);
-                if (ev.IsAllowed == false) ev.Player.ShowHint($"{_plugin.Translation.ScpPedestalCantOpen}");
-            }
-            if (ev.Locker.StructureType == StructureType.SmallWallCabinet)
-            {
-                if (!_plugin.Config.MedKitLocker.Any()) return;
-                var currItem = (int)ev.Player.Inventory.CurItem.TypeId;
-                var configItemList = _plugin.Config.MedKitLocker;
-                ev.IsAllowed = configItemList.Contains(currItem);
-                if (ev.IsAllowed == false) ev.Player.ShowHint($"{_plugin.Translation.MedKitLockerCantOpen}");
-            }
-        }
         internal void OnWorkstationUse(ActivatingWorkstationEventArgs ev)
         {
             if (!_plugin.Config.WorkStationAccess.Any()) return;
             var currItem = (int)ev.Player.Inventory.CurItem.TypeId;
             var configItemList = _plugin.Config.WorkStationAccess;
             ev.IsAllowed = configItemList.Contains(currItem);
+            if (ev.Player.IsBypassModeEnabled) ev.IsAllowed = true;
             if (ev.IsAllowed == false) ev.Player.ShowHint($"{_plugin.Translation.WorkstationCantActivate}");
+        }
+        internal void OnLockerUse(InteractingLockerEventArgs ev)
+        {
+            var ply = ev.Player;
+            var lockerAccess = _plugin.Config.LockersAccess;
+            string lockerType;
+            switch (ev.Locker.StructureType.ToString())
+            {
+                case "LargeGunLocker":
+                    lockerType = "LargeGunLocker";
+                    break;
+                case "ScpPedestal":
+                    lockerType = "ScpPedestal";
+                    break;
+                case "SmallWallCabinet":
+                    lockerType = "SmallWallCabinet";
+                    break;
+                default:
+                    lockerType = "StandardLocker";
+                    break;
+            }
+            if (lockerAccess.Keys.Count == 0) return;
+            if (lockerAccess.TryGetValue(lockerType, out var lockersValue))
+            {
+                string trimmedValue = lockersValue.Trim();
+                string[] itemIDs = trimmedValue.Split('&');
+                foreach (var eachValue in itemIDs)
+                {
+                    int currentItem = (int)ply.Inventory.CurItem.TypeId;
+                    if (int.TryParse(eachValue, out int itemId))
+                    {
+                        if (ply.IsBypassModeEnabled)
+                        {
+                            ev.IsAllowed = true;
+                            return;
+                        }
+                        if (currentItem.Equals(itemId) && !currentItem.Equals(-1))
+                        {
+                            ply.ShowHint($"{_plugin.Translation.LockerCanOpen}");
+                            ev.IsAllowed = true;
+                            return;
+                        }
+                        if (!itemIDs.Contains(currentItem.ToString()))
+                        {
+                            ply.ShowHint($"{_plugin.Translation.LockerCantOpen}");
+                            ev.IsAllowed = false;
+                            return;
+                        }
+                    }
+                    else Log.Error(lockersValue + " is not a int.");
+                }
+            }
         }
     }
 }
