@@ -9,11 +9,6 @@ access_set | Dictionary | 012: 0 / INTERCOM: 5&7 | Gives access to the door with
 scp_access_doors | List | CHECKPOINT_ENT / CHECKPOINT_LCZ_A / CHECKPOINT_LCZ_B | List of the doors that SCPs can open. Only works if door is edited on the access_set config.
 scp079_bypass | Bool | false | Allow or disallow SCP-079 bypass.
 generator_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
-nuke049_lockers_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
-large_gun_locker | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
-scp_pedestal_locker | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty the default keycards will be used).
-med_kit_locker | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty can be open without anything).
-work_station_access | List | Empty | List of item(s) that are allowed to open the generator doors. (If empty can be activated without anything).
 elevator_access | Dictionary | Empty | Dictionary of elevators and item(s). (If empty no access will be set).
 
 ```
