@@ -3,7 +3,7 @@ using Exiled.API.Interfaces;
 
 namespace CustomDoorAccess
 {
-    public class Trasnlation : ITranslation
+    public class Translation : ITranslation
     {
 
         [Description("Text displayed after using the lockers")]
