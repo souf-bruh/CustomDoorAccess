@@ -26,7 +26,7 @@ It’s worth noting that revoke_all only revokes access to the default cards to 
 
 **Some doors need revoke_all to work because they don’t need keycards by default!**
 ```
-012_BOTTOM,012_LOCKER,173_ARMORY,173_CONNECTOR,ESCAPE_PRIMARY,ESCAPE_SECONDARY,GR18,HID_LEFT,HID_RIGHT,LCZ_WC,SERVERS_BOTTOM,SURFACE_GATE
+173_ARMORY,173_CONNECTOR,ESCAPE_PRIMARY,ESCAPE_SECONDARY,GR18,HID_LEFT,HID_RIGHT,LCZ_WC,SERVERS_BOTTOM,SURFACE_GATE
 ```
 
 If generator_access and elevator_access are let empty, the default parameters will be used.
@@ -57,9 +57,6 @@ At the moment SCPs can bypass elevator accesses.
 
 Doors ID | Room/Door
 --- | ---
-012 | SCP-012 FIRST CONTAINEMENT DOOR
-012_BOTTOM | SCP-012 CONTAINEMENT DOOR
-012_LOCKER | SCP-012 LOCKER DOOR
 049_ARMORY | SCP-049 ARMORY DOOR
 079_FIRST | SCP-079 FIRST GATE
 079_SECOND | SCP-079 SECOND GATE
@@ -140,7 +137,8 @@ ArmorHeavy | 38
 GunRevolver | 39
 GunAK | 40
 GunShotgun | 41
-
+SCP330 | 42
+SCP2176 | 43
 ### Elevators List
 
 Elevators ID | Description
