@@ -51,6 +51,12 @@ Change Lift A elevator access to Scientist, Maj Scientist, Zone Manager.
 elevator_access:
   SystemA: 1&2&3
 
+Example:
+Change workstation access to only guard.
+
+work_station_access:
+- 4
+
 At the moment SCPs can bypass elevator accesses.
 ```
 ### Doors List
