@@ -49,7 +49,7 @@ Example:
 Change Lift A elevator access to Scientist, Maj Scientist, Zone Manager.
 
 elevator_access:
-    SystemA: 1&2&3
+  SystemA: 1&2&3
 
 At the moment SCPs can bypass elevator accesses.
 ```
