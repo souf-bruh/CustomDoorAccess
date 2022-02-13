@@ -5,7 +5,7 @@ using Log = Exiled.API.Features.Log;
 
 namespace CustomDoorAccess
 {
-    public class CdaPlugin : Plugin<Configs, Trasnlation>
+    public class CdaPlugin : Plugin<Configs, Translation>
     {
         public EventHandlers _eventHandlers;
         public override string Author { get; } = "Faety";
